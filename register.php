@@ -7,22 +7,24 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 // include_once('lib/header.php');
 
 ?>
-<div class="container">
-    <div class="row col-6">
+<div class=" register_container">
+    <div class="">
         <h3>Register</h3>
     </div>
-    <div class="row col-6">
+    <div class="">
         <p><strong>Welcome, Please Register</strong></p>
     </div>
-    <div class="row col-6">
+    <div class="">
         <p>All Fields are required</p>
     </div>
-    <div class="row col-6">
+    <div class="">
 
-        <form method="POST" action="processregister.php">
-        <p>
+        <form method="POST" action="processregister.php" class="register_form">
+        <p class="register_error">
             <?php  print_alert(); ?>
         </p>
+
+          <div class="register_input_items">
             <p>
                 <label>First Name</label><br />
                 <input  
@@ -31,7 +33,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                         echo "value=" . $_SESSION['first_name'];                                                             
                     }                
                 ?>
-                type="text" class="form-control" name="first_name" placeholder="First Name" />
+                type="text" class="form-control register_input" name="first_name" placeholder="First Name" />
             </p>
             <p>
                 <label>Last Name</label><br />
@@ -41,8 +43,10 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                         echo "value=" . $_SESSION['last_name'];                                                             
                     }                
                 ?>
-                type="text" class="form-control" name="last_name" placeholder="Last Name"  />
+                type="text" class="form-control register_input" name="last_name" placeholder="Last Name"  />
             </p>
+          </div>
+          <div class="register_email">
             <p>
                 <label>Email</label><br />
                 <input
@@ -53,16 +57,17 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                     }                
                 ?>
 
-                type="text" class="form-control" name="email" placeholder="Email"  />
+                type="text" class="form-control register_email_input" name="email" placeholder="Email"  />
             </p>
-
+          </div>
+          <div class="register_input_items">
             <p>
                 <label>Password</label><br />
-                <input type="password" class="form-control" name="password" placeholder="Password"  />
+                <input type="password" class="form-control register_input" name="password" placeholder="Password"  />
             </p>
             <p>
                 <label>Gender</label><br />
-                <select class="form-control" name="gender" >
+                <select class="form-control register_input" name="gender" >
                 <?php              
                     if(isset($_SESSION['department'])){
                         echo "value=" . $_SESSION['department'];                                                             
@@ -85,10 +90,11 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                     >Male</option>
                 </select>
             </p>
-        
+          </div>
+          <div class="register_input_items">
             <p>
                 <label>Designation</label><br />
-                <select class="form-control" name="designation" >
+                <select class="form-control register_input" name="designation" >
                 
                     <option value="">Select One</option>
                     <option 
@@ -122,15 +128,16 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                         echo "value=" . $_SESSION['department'];                                                             
                     }                
                 ?>
-                type="text" id="department" class="form-control" name="department" placeholder="Department"  />
+                type="text" id="department" class="form-control register_input" name="department" placeholder="Department"  />
             
             </p>
+          </div>
             <p>
-                <button class="btn btn-sm btn-success" type="submit">Register</button>
+              <button class="btn btn-sm btn-success register_button" type="submit">Register</button>
             </p>
             <p>
-                    <a href="forgot.php">Forgot Password</a><br />
-                    <a href="login.php">Already have an account? Login</a>
+              <a href="forgot.php">Forgot Password</a><br />
+              <a href="login.php">Already have an account? Login</a>
             </p>
         </form>
 
