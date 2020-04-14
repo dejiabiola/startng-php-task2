@@ -1,4 +1,5 @@
 <?php require_once("alert.php");
+
   function is_user_loggedIn() {
     if($_SESSION['loggedIn'] && !empty($_SESSION['loggedIn']))  {
       return true;
@@ -30,7 +31,7 @@
     $allUsers = scandir("db/users/"); //return @array (2 filled)
     $countAllUsers = count($allUsers);
 
-    for ($counter = 0; $counter < $countAllUsers ; $counter++) {
+    for ($counter = 0; $counter < $countAllUsers; $counter++) {
        
         $currentUser = $allUsers[$counter];
 

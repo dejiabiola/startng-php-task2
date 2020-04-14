@@ -1,10 +1,19 @@
 <?php include_once('lib/header.php');
  require_once('functions/alert.php');
+ require_once('functions/redirect.php');
 if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
     // redirect to dashboard
-    header("Location: dashboard.php");
+    if ($_SESSION['designation'] == 'Patient') {
+      redirect_to("patient.php");
+      die();
+    } else if ($_SESSION['designation'] == 'Medical Team (MT)') {
+      redirect_to("medical_team.php");
+      die();
+    } else if ($_SESSION['designation'] == 'Super Admin (SA)') {
+      redirect_to("super_admin.php");
+      die();
+    }
 }
-// include_once('lib/header.php');
 
 ?>
 <div class=" register_container">

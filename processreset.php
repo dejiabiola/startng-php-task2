@@ -46,7 +46,7 @@
             //Check for password
   
             $userObject = find_user($email);
-            $userObject -> password = password_hash($password, PASSWORD_BCRYPT);
+            $userObject->password = password_hash($password, PASSWORD_BCRYPT);
             
             
             unlink("db/users/" . $email . ".json"); // Delete current data from file
@@ -54,22 +54,20 @@
               unlink("db/token/" . $email . ".json");
             }
             
+            save_user($userObject);
 
-            file_put_contents("db/users/". $userObject -> email . ".json", json_encode($userObject));
 
-            $_SESSION["message"] = "YPassword Reset Successful, you can now login";
             header("Location: ./login.php");
 
-            // set_alert('message',"Password Reset Successful, you can now login");
-            // redirect_to("login.php");
+            set_alert('message',"Password Reset Successful, you can now login");
 
+            $subject = "Password Reset Successful";
+            $message = "Your password reset on SNH was successful. If you did not initiate the password, visit snh.org and reset your password immediately.";
+            send_mail($subject,$message,$email);
 
-            // $subject = "Password Reset Successful";
-            // $message = "Your password reset on SNH was successful. If you did not initiate the password, visit snh.org and reset your password immediately.";
-            // send_mail($subject,$message,$email);
-                       
+            redirect_to("login.php");
+            return;         
             
-            die();
           }
           
         }

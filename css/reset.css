@@ -1,0 +1,20 @@
+.reset_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset_form {
+  width: 600px;
+}
+
+.reset_input {
+  width: 100%;
+}
+
+.reset_button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+}

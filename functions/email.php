@@ -10,7 +10,7 @@ function send_mail(
     ){
     
     $headers = "From: no-reply@snh.org" . "\r\n" .
-    "CC: deji@hng.org";
+    "CC: deji@snh.org";
 
     $try = mail($email,$subject,$message,$headers);
 

@@ -1,6 +1,5 @@
 <?php 
 
-//TODO: Implement token functions
 
 function generate_token(){
     $token = ""; 
@@ -20,7 +19,7 @@ function find_token($email = ''){
     $allUserTokens = scandir("db/tokens/"); //return @array (2 filled)
     $countAllUserTokens = count($allUserTokens);
 
-    for ($counter = 0; $counter < $countAllUserTokens ; $counter++) {
+    for ($counter = 0; $counter < $countAllUserTokens; $counter++) {
         
         $currentTokenFile = $allUserTokens[$counter];
 

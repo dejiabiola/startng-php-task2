@@ -1,6 +1,7 @@
 <?php 
   session_start();
   require_once("./functions/user.php");
+  require_once("./functions/registerValidate.php");
 
   $errorCount = 0;
 
@@ -16,60 +17,23 @@
   $super_admin_email = $_POST['admin_email'] != '' ? $_POST['admin_email'] : '';
  
 
+
+  // Check if access came from the superadmin page
   if ($super_admin_check) {
     $_SESSION['admin'] = true;
   }
 
 
-
-    $_SESSION['first_name'] = $first_name;
-    $_SESSION['last_name'] = $last_name;
-    $_SESSION['email'] = $email;
-    $_SESSION['gender'] = $gender;
-    $_SESSION['designation'] = $designation;
-    $_SESSION['department'] = $department;
-  
-  
-
-
-  // Start of helper functions for form validation
-  function nameCheck($string) {
-    if (preg_match('/\\d/', $string) > 0) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  function lengthCheck($string, $length) {
-    if (strlen($string) < $length) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  function checkReturnLocation($super_admin_check) {
-    if ($super_admin_check) {
-      header("location: super_admin.php");
-    } else {
-      header("location: register.php");
-    }
-  }
-
-  function checkSuccessReturnLocation($super_admin_check) {
-    if ($super_admin_check) {
-      $_SESSION["message"] = "The user has been added successfully. They can now log in";
-      header("location: super_admin.php");
-    } else {
-      $_SESSION["message"] = "Your information has been added successfully. You can now log in";
-      header("location: login.php");
-    }
-  }
+  // Assign sessions to new user information
+  $_SESSION['first_name'] = $first_name;
+  $_SESSION['last_name'] = $last_name;
+  $_SESSION['email'] = $email;
+  $_SESSION['gender'] = $gender;
+  $_SESSION['designation'] = $designation;
+  $_SESSION['department'] = $department;
 
   
-  // function 
-  // End of helper functions for form validation
+
 
 
 
@@ -109,21 +73,22 @@
     if ($errorCount > 1) {
       $session_error .= 's';
     }
-    $session_error .= ' in your form submission.<br>';
-    $_SESSION["error"] = $session_error . "You have to fill all fields.";
+    $session_error .= ' in your form submission.<br> You have to fill all fields.';
+    $_SESSION["error"] = $session_error;
 
     checkReturnLocation($super_admin_check);
   } else {
     //Continue to database
 
     if ($super_admin_check) {
+      // Get the superadmin sessions data back
       $adminString = file_get_contents("db/users/".$super_admin_email . ".json");
       $adminObject = json_decode($adminString);
  
 
       $_SESSION['email'] = $adminObject -> email;
       $_SESSION['fullname'] = $adminObject -> first_name . ' ' . $adminObject -> last_name;
-      $_SESSION['role'] = $adminObject -> designation;
+      $_SESSION['designation'] = $adminObject -> designation;
       $_SESSION['department'] = $adminObject -> department;
       $_SESSION['registered'] = $adminObject -> registration_date;
       $_SESSION['logInDate'] = $adminObject -> last_login_date;
@@ -132,7 +97,7 @@
 
     $registration_date = date("Y/m/d");
    
-   
+   // Create new user object and store new user data in it
     $userObject = [
       'id' => uniqid(),
       'first_name' => $first_name,

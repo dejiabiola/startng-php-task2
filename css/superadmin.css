@@ -1,14 +1,15 @@
-.register_container {
+.superadmin_form_container {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
-
-.register_form {
+.superadmin_form {
   width: 700px;
   padding: 20px;
+  /* background-color: rgb(228, 244, 245); */
   border-radius: 20px;
   margin-bottom: 50px;
   box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
@@ -16,18 +17,22 @@
   -moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
-.register_input_items {
+.superadmin_input_items {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.register_input {
+.superadmin_input {
   width: 320px;
 }
 
-.register_button {
+.superadmin_button {
   width: 100%;
   padding: 10px;
   font-size: 1rem;
+}
+
+.superadmin_email {
+  margin-left: 10px;
 }

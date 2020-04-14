@@ -6,6 +6,7 @@
   require_once("./functions/redirect.php");
   require_once('./functions/email.php');
 
+  // Collect date
   $errorCount = 0;
 
   $email = $_POST['email'] != '' ? $_POST['email'] : $errorCount++;
@@ -37,8 +38,8 @@
     for ($counter = 0; $counter < $countAllUsers; $counter++) {
       $currentuser = $allUsers[$counter];
 
-      $emailJson = $email . '.json';
-      if ($currentuser == $emailJson) {
+
+      if($currentuser == $email . ".json"){
 
         $token = generate_token();
 
@@ -57,7 +58,7 @@
       
     }
     set_alert('string', "Your email is not registered with us " . $email);
-    redirect_to("./login.php");
+    redirect_to("./forgot.php");
 
     
 

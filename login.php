@@ -14,15 +14,15 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
 }
 
 ?>
-<div class="container">
-    <div class="row col-6">
+<div class="login_container">
+    <div class="">
         <h3>Login</h3>
     </div>
-    <div class="row col-6">
+    <div class="">
         <p>
-        <?php  print_alert(); 'q';?>
+        <?php  print_alert();?>
         </p>
-        <form method="POST" action="processlogin.php">
+        <form method="POST" action="processlogin.php" class="login_form">
     
                 
             <p>
@@ -45,7 +45,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
         
         
             <p>
-                <button class="btn btn-sm btn-primary" type="submit">Login</button>
+                <button class="btn btn-sm btn-primary login_button" type="submit">Login</button>
             </p>
             <p>
                 <a href="forgot.php">Forgot Password</a><br />

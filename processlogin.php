@@ -35,18 +35,18 @@
       //Check for password
       $userString = file_get_contents("db/users/".$currentUser->email . ".json");
       $userObject = json_decode($userString);
-      $passwordFromDB = $userObject -> password;
+      $passwordFromDB = $userObject->password;
 
 
-      $passwrodFromUser = password_verify($password, $passwordFromDB);
+      $passwordVerify = password_verify($password, $passwordFromDB);
 
       if (password_verify($password, $passwordFromDB)) {
-        $_SESSION['loggedIn'] = $userObject -> id;
-        $_SESSION['email'] = $userObject -> email;
-        $_SESSION['fullname'] = $userObject -> first_name . ' ' . $userObject -> last_name;
-        $_SESSION['role'] = $userObject -> designation;
-        $_SESSION['department'] = $userObject -> department;
-        $_SESSION['registered'] = $userObject -> registration_date;
+        $_SESSION['loggedIn'] = $userObject->id;
+        $_SESSION['email'] = $userObject->email;
+        $_SESSION['fullname'] = $userObject->first_name . ' ' . $userObject->last_name;
+        $_SESSION['designation'] = $userObject->designation;
+        $_SESSION['department'] = $userObject->department;
+        $_SESSION['registered'] = $userObject->registration_date;
 
 
         // Get login date and time
@@ -54,24 +54,24 @@
         $login_date = date("Y/m/d");
         $login_time = date("h:i:sa");
 
-        $userObject -> last_login_date = $login_date;
-        $userObject -> last_login_time = $login_time; 
+        $userObject->last_login_date = $login_date;
+        $userObject->last_login_time = $login_time; 
 
         unlink("db/users/" . $email . ".json");
 
-        file_put_contents("db/users/". $userObject -> email . ".json", json_encode($userObject));
+        file_put_contents("db/users/". $userObject->email . ".json", json_encode($userObject));
 
-        $_SESSION['logInDate'] = $userObject -> last_login_date;
-        $_SESSION['logInTime'] = $userObject -> last_login_time;
+        $_SESSION['logInDate'] = $userObject->last_login_date;
+        $_SESSION['logInTime'] = $userObject->last_login_time;
 
-        if ($_SESSION['role'] == 'Patient') {
-          header("Location: ./patient.php");
+        if ($_SESSION['designation'] == 'Patient') {
+          redirect_to("patient.php");
           die();
-        } else if ($_SESSION['role'] == 'Medical Team (MT)') {
-          header("Location: ./medical_team.php");
+        } else if ($_SESSION['designation'] == 'Medical Team (MT)') {
+          redirect_to("medical_team.php");
           die();
-        } else if ($_SESSION['role'] == 'Super Admin (SA)') {
-          header("Location: ./super_admin.php");
+        } else if ($_SESSION['designation'] == 'Super Admin (SA)') {
+          redirect_to("super_admin.php");
           die();
         }
 
