@@ -1,0 +1,25 @@
+.book_appointment_main{
+  width: 600px;
+  margin: 50px auto;
+}
+
+.book_appointment_header_block {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.appointment_label {
+  font-size: 1.2rem;
+  width: 100%
+}
+
+.appointment_button {
+  width: 100%;
+  padding: 8px;
+}
+
+.col-12 {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}

@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/medicalteam.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/forgot.css">
+    <link rel="stylesheet" href="css/patientappointment.css">
+    <link rel="stylesheet" href="css/paybill.css">
     <script src="js/scripts.js"></script>
 </head>
 <body>

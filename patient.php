@@ -11,7 +11,7 @@ if(!isset($_SESSION['loggedIn'])){
   <h3>Patient Board</h3>
   <p>
     Welcome, <span style="text-decoration:underline"><?php echo $_SESSION['fullname'] ?></span>, 
-    You are logged in as <span style="text-decoration:underline"><?php echo $_SESSION['role'] ?></span>, 
+    You are logged in as <span style="text-decoration:underline"><?php echo $_SESSION['designation'] ?></span>, 
     and your login time is <span style="text-decoration:underline"><?php echo $_SESSION['logInTime'] ?></span>.
   </p>
   <p>Your department is <span style="text-decoration:underline"><?php echo $_SESSION['department'] ?></span></p>
@@ -23,3 +23,17 @@ if(!isset($_SESSION['loggedIn'])){
 
   <hr>
 </div>
+<div class="patient_body">
+  <div class="patient_links">
+    <p>What do you want to do?</p>
+    <p><a class="p-2" href="pay_bills.php">Pay Bills</a></p>
+    <p><a class="p-2" href="book_appointment.php">Book Appointment</a></p>
+  </div>
+  <div class="patient_main">
+    
+  </div>  
+
+</div>
+
+
+<?php include_once('lib/footer.php'); ?>

@@ -16,12 +16,12 @@ function send_mail(
 
     if($try){
         
-        set_alert('message',"Password reset has been sent to your email: " . $email);        
+        set_alert('message',"Password reset has been sent to your email " . $email);        
         redirect_to("login.php");
 
     }else{
         
-        set_alert('error',"Something went wrong, we could not send password reset to :" . $email);             
+        set_alert('error',"Something went wrong, we could not send password reset to " . $email);             
         redirect_to("forgot.php");
     }
 
