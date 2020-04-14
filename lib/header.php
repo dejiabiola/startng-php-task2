@@ -13,12 +13,12 @@
     <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/superadmin.css">
-    <link rel="stylesheet" href="css/patient.css">
     <link rel="stylesheet" href="css/medicalteam.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/forgot.css">
     <link rel="stylesheet" href="css/patientappointment.css">
     <link rel="stylesheet" href="css/paybill.css">
+    <link rel="stylesheet" href="css/patient.css">
     <script src="js/scripts.js"></script>
 </head>
 <body>

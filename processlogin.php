@@ -47,6 +47,7 @@
         $_SESSION['designation'] = $userObject->designation;
         $_SESSION['department'] = $userObject->department;
         $_SESSION['registered'] = $userObject->registration_date;
+        $_SESSION['gender'] = $userObject->gender;
 
 
         // Get login date and time

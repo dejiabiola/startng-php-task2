@@ -19,20 +19,18 @@ if(!isset($_SESSION['loggedIn'])){
   <p>Date of registration of account: <span style="text-decoration:underline"><?php echo $_SESSION['registered'] ?></span></p>
   <br>
   <br>
-  <br>
+  <p>
+    <?php print_alert() ; ?>
+  </p>
 
   <hr>
 </div>
-<div class="patient_body">
+<div class="patient_body" style="margin-left:50px;">
   <div class="patient_links">
     <p>What do you want to do?</p>
     <p><a class="p-2" href="pay_bills.php">Pay Bills</a></p>
     <p><a class="p-2" href="book_appointment.php">Book Appointment</a></p>
   </div>
-  <div class="patient_main">
-    
-  </div>  
-
 </div>
 
 

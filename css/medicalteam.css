@@ -1,0 +1,39 @@
+.medical_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.medical_table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.medical_main .medical_table, 
+.medical_main th,
+.medical_main td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.medical_table th {
+  font-size: 1.1rem;
+}
+
+.medical_main th,
+.medical_main td {
+  padding: 15px;
+  text-align: left;
+}
+table.medical_table tr:nth-child(even) {
+  background-color: #eee;
+}
+table.medical_table tr:nth-child(odd) {
+ background-color: #fff;
+}
+table.medical_table th {
+  background-color: black;
+  color: white;
+}

@@ -4,11 +4,11 @@
 if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
     // redirect to dashboard
     ;
-    if ($_SESSION['role'] == 'Super Admin (SA)') {
+    if ($_SESSION['designation'] == 'Super Admin (SA)') {
       header("Location: super_admin.php");
-    } else if ($_SESSION['role'] == 'Medical Team (MT)') {
+    } else if ($_SESSION['designation'] == 'Medical Team (MT)') {
       header("Location: medical_team.php");
-    } else if ($_SESSION['role'] == 'Patient') {
+    } else if ($_SESSION['designation'] == 'Patient') {
       header("Location: patient.php");
     }
 }

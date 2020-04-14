@@ -11,7 +11,7 @@ if(!isset($_SESSION['loggedIn'])){
   <h3>Super Admin Board</h3>
   <p>
     Welcome, <span style="text-decoration:underline"><?php echo $_SESSION['fullname'] ?></span>, 
-    You are logged in as <span style="text-decoration:underline"><?php echo $_SESSION['role'] ?></span>, 
+    You are logged in as <span style="text-decoration:underline"><?php echo $_SESSION['designation'] ?></span>, 
     and your login time is <span style="text-decoration:underline"><?php echo $_SESSION['logInTime'] ?></span>.
   </p>
   <p>Your department is <span style="text-decoration:underline"><?php echo $_SESSION['department'] ?></span></p>
@@ -23,6 +23,14 @@ if(!isset($_SESSION['loggedIn'])){
   <hr>
   <h4>Add Other Members</h4>
   <p>Please fill this form to add other members</p>
+</div>
+<div class="patient_body" style="margin-left:50px;">
+  <div class="patient_links">
+    <p>What do you want to do?</p>
+    <p><a class="p-2" href="pay_bills.php">View Medical Staff</a></p>
+    <p><a class="p-2" href="book_appointment.php">View Patients</a></p>
+    <p><a class="p-2" href="book_appointment.php">Register Someone</a></p>
+  </div>
 </div>
   <div class="superadmin_form_container">
  

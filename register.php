@@ -142,7 +142,7 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
             </p>
           </div>
             <p>
-              <button class="btn btn-sm btn-success register_button" type="submit">Register</button>
+              <button class="btn btn-sm btn-primary register_button" type="submit">Register</button>
             </p>
             <p>
               <a href="forgot.php">Forgot Password</a><br />

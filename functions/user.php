@@ -54,4 +54,31 @@ function save_user($userObject){
 
   file_put_contents("db/users/". $userObject['email'] . ".json", json_encode($userObject));
 }
+
+function add_appointment($userObject){
+  file_put_contents("db/appointments/". strtolower($userObject['appointment_department']) . uniqid() . ".json", json_encode($userObject));
+}
+
+
+function get_appointment($department) {
+  $allAppointments = [];
+
+  $appointmentsInDb = scandir("db/appointments");
+  $countAllAppointments = count($appointmentsInDb);
+
+  for ($counter = 0; $counter < $countAllAppointments; $counter++) {
+    $currentAppointment = $appointmentsInDb[$counter];
+
+    if(strpos($currentAppointment, strtolower($department)) !== false) {
+      $appointmentString = file_get_contents("db/appointments/".$currentAppointment);
+      $appointmentObject = json_decode($appointmentString);
+      array_push($allAppointments, $appointmentObject);
+    }
+  }
+
+  // print_r($allAppointments);
+  // die();
+  return $allAppointments;
+}
+
 ?>
