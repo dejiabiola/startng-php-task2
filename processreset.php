@@ -38,24 +38,27 @@
 
     $checkToken = is_user_loggedIn() ? true :  find_token($email);
 
-
+      
         if ($checkToken) {
-
+         
           $userExists = find_user($email);
+          
           if ($userExists) {
             //Check for password
-  
+            
             $userObject = find_user($email);
             $userObject->password = password_hash($password, PASSWORD_BCRYPT);
             
-            
+            echo "here";
+            die();
             unlink("db/users/" . $email . ".json"); // Delete current data from file
             if ($_SESSION['token'] && !empty($_SESSION['token'])) {
               unlink("db/token/" . $email . ".json");
             }
-            
+            echo "Check here";
+            die();
             save_user($userObject);
-
+        
 
             header("Location: ./login.php");
 
@@ -71,6 +74,8 @@
           }
           
         }
+        echo "see me here";
+            die();
 
     set_alert('error',"Password Reset Failed, token/email invalid or expired");
     redirect_to("login.php");

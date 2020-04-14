@@ -23,6 +23,7 @@
 
   function find_user($email = ""){
     //check the database if the user exsits
+    
     if(!$email){
         set_alert('error','User Email is not set');
         die();
@@ -37,9 +38,10 @@
 
         if($currentUser == $email . ".json"){
           //check the user password.
+          
             $userString = file_get_contents("db/users/".$currentUser);
             $userObject = json_decode($userString);
-                       
+       
             return $userObject;
           
         }        
@@ -52,7 +54,7 @@
 
 function save_user($userObject){
 
-  file_put_contents("db/users/". $userObject['email'] . ".json", json_encode($userObject));
+  file_put_contents("db/users/". $userObject->email . ".json", json_encode($userObject));
 }
 
 function add_appointment($userObject){
@@ -76,8 +78,7 @@ function get_appointment($department) {
     }
   }
 
-  // print_r($allAppointments);
-  // die();
+
   return $allAppointments;
 }
 

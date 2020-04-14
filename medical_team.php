@@ -20,6 +20,9 @@ if(!isset($_SESSION['loggedIn'])){
   <p>Date of registration of account: <span style="text-decoration:underline"><?php echo $_SESSION['registered'] ?></span></p>
   <br>
   <br>
+  <p class="register_error">
+            <?php  print_alert(); ?>
+        </p>
 
   <hr>
 </div>
