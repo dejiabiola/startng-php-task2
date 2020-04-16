@@ -92,7 +92,7 @@ There are two files where sending emails is part of the algorithm process. These
 - processforgot.php
 
 To receive the email, you can open an account on an smtp service like [mailtrap](https://mailtrap.io/), then enter into each of the two files and tweak the following configurations to the one provided to you from mailtrap:
-- $mail->Username   = '38a70c6d5e5842';
-- $mail->Password   = '9ce9389295adda'; 
+- $mail->Username
+- $mail->Password
 
 
