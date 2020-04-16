@@ -27,7 +27,7 @@ if(!isset($_SESSION['loggedIn'])){
   <hr>
 </div>
 <div class="medical_main">
-  <h3>Appointments List</h3>
+  <h3>Appointment List</h3>
   <?php 
   
    $appointments = get_appointment($_SESSION['department']);

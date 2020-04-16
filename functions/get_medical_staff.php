@@ -1,6 +1,8 @@
 
 <?php
 
+
+// Get all users with medical designation from Db
 function get_medical_staff() {
   $allMedicalStaff = [];
   $allUsersInDb = scandir("db/users");

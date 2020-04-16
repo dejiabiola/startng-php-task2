@@ -92,11 +92,13 @@
           $mail->AltBody = 'Your password change on SNH was successful. If you did not initiate the password change, visit snh.org and reset your password immediately.';
 
           $mail->send();
+          // Email was sent. return back to the dashboard and display sucess message
           set_alert('message',"Your password has been updated successfully");
           return_to($_SESSION['designation']);
           
         } catch (Exception $e) {
-          set_alert('error',"An error occured. Please contact support");
+          // Email wan't sent. return back to dashboard tho
+          set_alert('error',"Password was updated succefully but email did not send");
           return_to($_SESSION['designation']);
           return false;
         }

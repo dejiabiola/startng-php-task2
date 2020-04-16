@@ -14,7 +14,7 @@ $initial_complaint = $_POST['initial_complaint'] != '' ? $_POST['initial_complai
 $appointment_department = $_POST['appointment_department'] != '' ? $_POST['appointment_department'] : $errorCount++;
 
 
-
+// Add sessions
 $_SESSION['appointment_date'] = $appointment_date;
 $_SESSION['appointment_time'] = $appointment_time;
 $_SESSION['appointment_nature'] = $appointment_nature;
@@ -33,9 +33,10 @@ if ($errorCount > 0) {
   $_SESSION["error"] = $session_error;
 
 
-
   redirect_to("book_appointment.php");
+
 } else {
+  
   $userObject = [
     'appointment_date' => $appointment_date,
     'full_name' => $_SESSION['fullname'],

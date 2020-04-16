@@ -27,8 +27,6 @@
   } else {
     // Count all the users,
     $currentUser = find_user($email);
-//  print_r($currentUser);
-    // die();
 
     if ($currentUser) {
 
@@ -60,22 +58,13 @@
 
         unlink("db/users/" . $email . ".json");
 
-        file_put_contents("db/users/". $userObject->email . ".json", json_encode($userObject));
+        // Save user to db
+        update_user($userObject);
 
         $_SESSION['logInDate'] = $userObject->last_login_date;
         $_SESSION['logInTime'] = $userObject->last_login_time;
 
-        if ($_SESSION['designation'] == 'Patient') {
-          redirect_to("patient.php");
-          die();
-        } else if ($_SESSION['designation'] == 'Medical Team (MT)') {
-          redirect_to("medical_team.php");
-          die();
-        } else if ($_SESSION['designation'] == 'Super Admin (SA)') {
-          redirect_to("super_admin.php");
-          die();
-        }
-
+        return_to($_SESSION['designation']) ;
 
         die();
       } else {

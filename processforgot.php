@@ -83,8 +83,7 @@
                             <p>If your did not initiate this rest, please ignore this 
                             message otherwise, 
                             visit:<a href=http://192.168.64.2/snh-hospital/reset.php?token=".$token . ">snh.org</p>";
-          $mail->AltBody = "A password reset has been initiated from this account. If your did not initiate this rest, please ignore this 
-                            message otherwise, visit: http://192.168.64.2/snh-hospital/reset.php?token=".$token;
+          $mail->AltBody = "A password reset has been initiated from this account. If your did not initiate this rest, please ignore this message otherwise, visit: http://192.168.64.2/snh-hospital/reset.php?token=".$token;
 
           $mail->send();
           set_alert('message',"A rest link has been sent to your email");

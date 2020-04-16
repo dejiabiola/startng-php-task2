@@ -1,5 +1,7 @@
 <?php
 
+
+// Get all users with patient designation from Db
 function get_patients() {
   $allPatients = [];
   $allUsersInDb = scandir("db/users");

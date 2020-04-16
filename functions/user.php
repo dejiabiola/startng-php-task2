@@ -77,6 +77,9 @@ function return_to($designation) {
   }
 }
 
+
+
+// Get all the appointment objects from Db
 function get_appointment($department) {
   $allAppointments = [];
 

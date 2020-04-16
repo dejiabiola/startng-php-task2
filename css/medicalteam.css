@@ -34,6 +34,6 @@ table.medical_table tr:nth-child(odd) {
  background-color: #fff;
 }
 table.medical_table th {
-  background-color: #0156B3;
+  background-color: #007BFF;
   color: white;
 }

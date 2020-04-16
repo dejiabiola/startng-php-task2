@@ -11,9 +11,7 @@
   padding: 20px;
   border-radius: 20px;
   margin-bottom: 50px;
-  box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
-  -webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+  border: 1px solid black
 }
 
 .register_input_items {
