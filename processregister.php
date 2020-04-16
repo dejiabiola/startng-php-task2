@@ -110,15 +110,14 @@
       'registration_date' => $registration_date
     ];
 
+   
     // Look through entries in the db and check if user already exists
     $userExists = find_user($email);
-      if ($userExists) {
-        $_SESSION["error"] = "Registration failed.  This user already exists";
-        checkReturnLocation($super_admin_check);
-        die();
-      }
-    
-
+    if ($userExists) {
+      $_SESSION["error"] = "Registration failed.  This user already exists";
+      checkReturnLocation($super_admin_check);
+      die();
+    }
     
 
     save_user($userObject);

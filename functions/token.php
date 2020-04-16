@@ -28,7 +28,6 @@ function find_token($email = ''){
            $tokenContent = file_get_contents("db/tokens/".$currentTokenFile);
 
            $tokenObject = json_decode($tokenContent);
-        //    $tokenFromDB = $tokenObject->token;
         return $tokenObject;
 
         }

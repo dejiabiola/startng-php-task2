@@ -16,7 +16,6 @@ if(!is_user_loggedIn() && !is_token_set()){
  <div style="text-align:center;">  
    <h3>Reset Password</h3>
    <p>Reset Password associated with your account : <?php echo $_SESSION['email'] ?></p> 
-   <!-- TODO: Update email above as they enter it (JS) -->
   </div>
   <div class="login_container">
     <form action="processreset.php" method="POST" class="reset_form">

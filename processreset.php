@@ -4,7 +4,9 @@
   require_once("./functions/alert.php");
   require_once("./functions/redirect.php");
   require_once("./functions/token.php");
-  require_once("./functions/email.php");
+
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\Exception;
 
 
   $errorCount = 0;
@@ -36,48 +38,72 @@
   } else {
 
 
-    $checkToken = is_user_loggedIn() ? true :  find_token($email);
+    $checkToken = is_user_loggedIn() ? "true" :  find_token($email);
 
+    if ($checkToken) {
       
-        if ($checkToken) {
-         
-          $userExists = find_user($email);
-          
-          if ($userExists) {
-            //Check for password
-            
-            $userObject = find_user($email);
-            $userObject->password = password_hash($password, PASSWORD_BCRYPT);
-            
-            echo "here";
-            die();
-            unlink("db/users/" . $email . ".json"); // Delete current data from file
-            if ($_SESSION['token'] && !empty($_SESSION['token'])) {
-              unlink("db/token/" . $email . ".json");
-            }
-            echo "Check here";
-            die();
-            save_user($userObject);
+      
+      if (find_user($email) !== false) {
+        //Check for password
+        
+        $userObject = find_user($email);
+        $userObject->password = password_hash($password, PASSWORD_BCRYPT);
+
+        unlink("db/users/" . $email . ".json"); // Delete current data from file
+        if ($_SESSION['token'] && !empty($_SESSION['token'])) {
+          unlink("db/token/" . $email . ".json");
+        }
+
+        update_user($userObject);
+  
+
+
+        /* Stert of Send email to the user code block */
+
+        // Load Composer's autoloader
+        require "./vendor/autoload.php";
+
         
 
-            header("Location: ./login.php");
+        // Instantiation and passing `true` enables exceptions
+        $mail = new PHPMailer(true);
 
-            set_alert('message',"Password Reset Successful, you can now login");
+        try {
+          //Server settings
+          $mail->isSMTP();                                            // Send using SMTP
+          $mail->Host       = 'smtp.mailtrap.io';                    // Set the SMTP server to send through
+          $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+          $mail->Username   = '38a70c6d5e5842';                     // SMTP username
+          $mail->Password   = '9ce9389295adda';                               // SMTP password
+          $mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+          $mail->Port       = 2525;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
-            $subject = "Password Reset Successful";
-            $message = "Your password reset on SNH was successful. If you did not initiate the password, visit snh.org and reset your password immediately.";
-            send_mail($subject,$message,$email);
+          //Recipients
+          $mail->setFrom('no-reply@snh.org', 'SNH');
+          $mail->addAddress($email);     // Add a recipient
+          $mail->addCC('deji@snh.org');
 
-            redirect_to("login.php");
-            return;         
-            
-          }
+        
+          // Content
+          $mail->isHTML(true);                                  // Set email format to HTML
+          $mail->Subject = 'Password Change Successful';
+          $mail->Body    = '<p>Your password change on SNH was successful.</p>
+                            <p>If you did not initiate the password change, visit snh.org and reset your password immediately.</p>';
+          $mail->AltBody = 'Your password change on SNH was successful. If you did not initiate the password change, visit snh.org and reset your password immediately.';
+
+          $mail->send();
+          set_alert('message',"Your password has been updated successfully");
+          return_to($_SESSION['designation']);
           
+        } catch (Exception $e) {
+          set_alert('error',"An error occured. Please contact support");
+          return_to($_SESSION['designation']);
+          return false;
         }
-        echo "see me here";
-            die();
-
-    set_alert('error',"Password Reset Failed, token/email invalid or expired");
+      }
+       die();   
+    }
+    set_alert('error',"Password Change Failed, token/email invalid or expired");
     redirect_to("login.php");
   }
 

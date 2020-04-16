@@ -1,7 +1,7 @@
 <?php require_once("alert.php");
 
   function is_user_loggedIn() {
-    if($_SESSION['loggedIn'] && !empty($_SESSION['loggedIn']))  {
+    if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn']))  {
       return true;
     }
     return false;
@@ -41,7 +41,6 @@
           
             $userString = file_get_contents("db/users/".$currentUser);
             $userObject = json_decode($userString);
-       
             return $userObject;
           
         }        
@@ -52,15 +51,31 @@
 }
 
 
-function save_user($userObject){
+function save_user($userArray){
 
-  file_put_contents("db/users/". $userObject->email . ".json", json_encode($userObject));
+  file_put_contents("db/users/". $userArray['email'] . ".json", json_encode($userArray));
+}
+
+function update_user($userObject) {
+  file_put_contents("db/users/". $userObject -> email . ".json", json_encode($userObject));
 }
 
 function add_appointment($userObject){
   file_put_contents("db/appointments/". strtolower($userObject['appointment_department']) . uniqid() . ".json", json_encode($userObject));
 }
 
+function return_to($designation) {
+  if ($designation == 'Patient') {
+    redirect_to("patient.php");
+    die();
+  } else if ($designation == 'Medical Team (MT)') {
+    redirect_to("medical_team.php");
+    die();
+  } else if ($designation == 'Super Admin (SA)') {
+    redirect_to("super_admin.php");
+    die();
+  }
+}
 
 function get_appointment($department) {
   $allAppointments = [];

@@ -60,18 +60,6 @@ if(!isset($_SESSION['loggedIn'])){
         </div>
       </div> 
       <div class="form-group column">
-        <label for="example-text-input" class="col-12 col-form-label">Initial Complaint</label>
-        <div class="col-12">
-          <input 
-          <?php              
-            if(isset($_SESSION['initial_complaint'])){
-                echo "value=" . $_SESSION['initial_complaint'];                                                             
-            }                
-          ?>
-          class="form-control" type="text"  id="example-text-input" name="initial_complaint">
-        </div>
-      </div> 
-      <div class="form-group column">
         <label for="example-text-input" class="col-12 col-form-label">Which department do you want to book an appointment?</label>
         <div class="col-12">
           <input 
@@ -82,6 +70,16 @@ if(!isset($_SESSION['loggedIn'])){
           ?>
           class="form-control" type="text"  id="example-text-input" name="appointment_department">
         </div>
+      </div>
+      <div class="form-group column">
+        <label for="exampleTextarea">Initial Complaint</label>
+        <textarea
+        <?php              
+            if(isset($_SESSION['initial_complaint'])){
+                echo "value=" . $_SESSION['initial_complaint'];                                                             
+            }                
+          ?>
+         class="form-control" id="exampleTextarea" rows="6" name="initial_complaint"></textarea>
       </div>
       <button class="btn btn-sm btn-primary appointment_button" type="submit">Book Appointment</button> 
     </form>

@@ -26,10 +26,10 @@ if(!isset($_SESSION['loggedIn'])){
   <hr>
 </div>
 <div class="patient_body" style="margin-left:50px;">
-  <div class="patient_links">
+  <div class="patient_links" style="text-align:center">
     <p>What do you want to do?</p>
-    <p><a class="p-2" href="pay_bills.php">Pay Bills</a></p>
-    <p><a class="p-2" href="book_appointment.php">Book Appointment</a></p>
+    <a class="p-2" href="pay_bills.php">Pay Bills</a>
+    <a class="p-2" href="book_appointment.php">Book Appointment</a>
   </div>
 </div>
 
