@@ -7,14 +7,15 @@
 }
 
 .medical_table {
-  width: 100%;
+  width: 100vw;
   margin-top: 20px;
+  max-width: 100%;
 }
 
 .medical_main .medical_table, 
 .medical_main th,
 .medical_main td {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-collapse: collapse;
 }
 
@@ -36,4 +37,18 @@ table.medical_table tr:nth-child(odd) {
 table.medical_table th {
   background-color: #007BFF;
   color: white;
+}
+
+.medical_table td {
+  text-align: center;
+}
+
+.pay_button {
+  background-color:teal;
+  width: 100%;
+}
+
+.pay_button:hover {
+  background-color: rgb(1, 78, 78);
+  box-shadow: 2px 3px 9px 1px #DBDBDB;
 }

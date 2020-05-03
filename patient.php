@@ -31,6 +31,7 @@ if(!isset($_SESSION['loggedIn'])){
     <p>What do you want to do?</p>
     <a class="p-2" href="pay_bills.php">Pay Bills</a>
     <a class="p-2" href="book_appointment.php">Book Appointment</a>
+    <a class="p-2" href="patient_transaction_history.php">Check Transaction History</a>
    
   </div>
 </div>

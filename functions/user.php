@@ -61,7 +61,7 @@ function update_user($userObject) {
 }
 
 function add_appointment($userObject){
-  file_put_contents("db/appointments/". strtolower($userObject['email']) . $userObject['id'] . ".json", json_encode($userObject));
+  file_put_contents("db/appointments/". $userObject['id'] . ".json", json_encode($userObject));
 }
 
 function return_to($designation) {
@@ -86,7 +86,7 @@ function get_appointment($department) {
   $appointmentsInDb = scandir("db/appointments");
   $countAllAppointments = count($appointmentsInDb);
 
-  for ($counter = 0; $counter < $countAllAppointments; $counter++) {
+  for ($counter = 2; $counter < $countAllAppointments; $counter++) {
     $currentAppointment = $appointmentsInDb[$counter];
 
     $appointmentString = file_get_contents("db/appointments/".$currentAppointment);

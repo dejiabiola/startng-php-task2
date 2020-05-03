@@ -44,6 +44,7 @@ if(!isset($_SESSION['loggedIn'])){
           <th>Nature of Appointment</th>
           <th>Initial Complaint</th>
           <th>Gender</th>
+          <th>Payment Status</th>
         </tr>
       </thead>
       <tbody>
@@ -58,6 +59,7 @@ if(!isset($_SESSION['loggedIn'])){
             <td><?php echo $appointments[$i]->appointment_nature ?></td>
             <td><?php echo $appointments[$i]->initial_complaint ?></td>
             <td><?php echo $appointments[$i]->gender ?></td>
+            <td><?php echo $appointments[$i]->payment_status ?></td>
           </tr>
         <?php } ?>
       </tbody>

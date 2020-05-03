@@ -1,19 +1,7 @@
 <?php include_once('lib/header.php');
  require_once('functions/alert.php');
  require_once('functions/redirect.php');
-if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
-    // redirect to dashboard
-    if ($_SESSION['designation'] == 'Patient') {
-      redirect_to("patient.php");
-      die();
-    } else if ($_SESSION['designation'] == 'Medical Team (MT)') {
-      redirect_to("medical_team.php");
-      die();
-    } else if ($_SESSION['designation'] == 'Super Admin (SA)') {
-      redirect_to("super_admin.php");
-      die();
-    }
-}
+
 
 ?>
 <div class=" register_container">

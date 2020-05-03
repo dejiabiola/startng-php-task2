@@ -10,14 +10,14 @@
   use PHPMailer\PHPMailer\PHPMailer;
   use PHPMailer\PHPMailer\Exception;
 
-  $appointmentId = $_GET['value']; 
+  $appointmentId = $_GET['id']; 
   $email = $_GET['email'];
   
   $appointmentObject = get_appointment_by_id($appointmentId);
 
   if ($appointmentObject) {
     $appointmentObject->payment_status = "Paid";
-    delete_appointment($email, $appointmentId);
+    delete_appointment($appointmentId);
 
     update_appointment($appointmentObject);
 

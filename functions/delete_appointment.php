@@ -1,6 +1,6 @@
 <?php 
 
 
-function delete_appointment($email, $id) {
-  unlink("db/appointments/" . $email . $id . ".json");
+function delete_appointment($id) {
+  unlink("db/appointments/" . $id . ".json");
 }
