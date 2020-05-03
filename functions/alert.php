@@ -10,7 +10,7 @@ function print_alert(){
   for($i = 0; $i < count($types); $i++){
       
     if( isset($_SESSION[$types[$i]]) && !empty($_SESSION[$types[$i]]) ) {
-      echo "<div class='alert alert-".$colors[$i]."' role='alert'>" . $_SESSION[$types[$i]] . "</div>";
+      echo "<div class='alert alert-".$colors[$i]."' role='alert' style='text-align: center;'>" . $_SESSION[$types[$i]] . "</div>";
       $_SESSION[$types[$i]] = '';
     }
 

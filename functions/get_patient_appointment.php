@@ -21,3 +21,19 @@ function get_patient_appointment($patient_email) {
   return $allAppointments;
 }
 
+function get_appointment_by_id($appointment_Id) {
+  $appointmentsInDb = scandir("db/appointments");
+  $countAllAppointments = count($appointmentsInDb);
+
+  for ($counter = 2; $counter < $countAllAppointments; $counter++) {
+    $currentAppointment = $appointmentsInDb[$counter];
+    $currentAppointmentString = file_get_contents("db/appointments/".$currentAppointment);
+    $currentAppointmentObject = json_decode($currentAppointmentString);
+    $app_id = $currentAppointmentObject->id;
+    if ($app_id == $appointment_Id) {
+      return $currentAppointmentObject;
+    }
+  }
+  return null;
+}
+

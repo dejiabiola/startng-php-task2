@@ -39,6 +39,7 @@ if ($errorCount > 0) {
 } else {
   
   $userObject = [
+    'id' => uniqid(),
     'appointment_date' => $appointment_date,
     'full_name' => $_SESSION['fullname'],
     'gender' => $_SESSION['gender'],

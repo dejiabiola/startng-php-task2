@@ -61,7 +61,7 @@ function update_user($userObject) {
 }
 
 function add_appointment($userObject){
-  file_put_contents("db/appointments/". strtolower($userObject['appointment_department']) . uniqid() . ".json", json_encode($userObject));
+  file_put_contents("db/appointments/". strtolower($userObject['email']) . $userObject['id'] . ".json", json_encode($userObject));
 }
 
 function return_to($designation) {
@@ -89,14 +89,13 @@ function get_appointment($department) {
   for ($counter = 0; $counter < $countAllAppointments; $counter++) {
     $currentAppointment = $appointmentsInDb[$counter];
 
-    if(strpos($currentAppointment, strtolower($department)) !== false) {
-      $appointmentString = file_get_contents("db/appointments/".$currentAppointment);
-      $appointmentObject = json_decode($appointmentString);
+    $appointmentString = file_get_contents("db/appointments/".$currentAppointment);
+    $appointmentObject = json_decode($appointmentString);
+    $appointmentDepartment = $appointmentObject->appointment_department;
+    if ($appointmentDepartment == $department) {
       array_push($allAppointments, $appointmentObject);
-    }
+    }   
   }
-
-
   return $allAppointments;
 }
 

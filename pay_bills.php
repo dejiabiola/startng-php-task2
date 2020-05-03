@@ -44,13 +44,32 @@ if(!isset($_SESSION['loggedIn'])){
             <td><?php echo $appointments[$i]->appointment_department ?></td>
             <td><?php echo $appointments[$i]->initial_complaint ?></td>
             <td><?php echo $appointments[$i]->payment_status ?></td>
-            <td>
-              Pay Now
-            </td>
+            <?php if ($appointments[$i]->payment_status != 'Paid') { ?>
+                <td style="background-color:teal;">
+                <form style="display:flex;justify-content:center;align-items:center;">
+                  <input type="hidden" id="patient_email"
+                  <?php              
+                      echo "value=" . $_SESSION['email'];                                                                         
+                  ?>
+                  >
+                  <input type="hidden" id="appointment_id"
+                  <?php              
+                      echo "value=" . $appointments[$i]->id;                                                                         
+                  ?>
+                  >
+                  <script type="text/javascript" src="https://ravesandboxapi.flutterwave.com/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+                  <button type="button" onClick="payWithRave()" id="pay_button" 
+                    style="background-color:teal;padding:10px;color:white;">
+                    Pay Now
+                  </button>
+                </form>
+              </td>
+              <?php } ?>
           </tr>
         <?php } ?>
       </tbody>
     </table>
+    <p style="width: 100%; text-align: left; margin-top: 30px;">*** All consultation fee is #2000 only</p>
   <?php } ?>
 </div>
 <?php include_once('lib/footer.php'); ?>
@@ -59,3 +78,38 @@ if(!isset($_SESSION['loggedIn'])){
 
 
 
+<script>
+    const API_publicKey = "FLWPUBK_TEST-220bf416ebaa65762642ad7fe776ad9a-X";
+    const email = document.getElementById('patient_email').value;
+    const appointmentId = document.getElementById('appointment_id').value;
+    function payWithRave() {
+        var x = getpaidSetup({
+            PBFPubKey: API_publicKey,
+            customer_email: email,
+            amount: 2000,
+            currency: "NGN",
+            txref: "rave-123456",
+            meta: [{
+                metaname: "flightID",
+                metavalue: "AP1234"
+            }],
+            onclose: function() {},
+            callback: function(response) {
+                var txref = response.data.txRef; // collect txRef returned and pass to a                    server page to complete status check.
+                console.log("This is the response returned after a charge", response);
+                if (
+                    response.respcode == "00" ||
+                    response.data.data.status == "successful"
+                ) {
+                    // redirect to a success page
+                    window.location = "http://192.168.64.2/snh-hospital/processPayment.php?value=" + appointmentId + "&email=" + email;
+                } else {
+                    // redirect to a failure page.
+                    window.location = "http://192.168.64.2/snh-hospital/processPaymentFailure.php"
+                }
+
+                x.close(); // use this to close the modal immediately after payment.
+            }
+        });
+    }
+</script>
