@@ -108,6 +108,13 @@ if(isset($_SESSION['loggedIn']) && !empty($_SESSION['loggedIn'])){
                     <option value="">Select One</option>
                     <option 
                     <?php              
+                        if(isset($_SESSION['designation']) && $_SESSION['designation'] == 'Super Admin (SA)'){
+                            echo "selected";                                                           
+                        }                
+                    ?>
+                    >Super Admin (SA)</option>
+                    <option 
+                    <?php              
                         if(isset($_SESSION['designation']) && $_SESSION['designation'] == 'Medical Team (MT)'){
                             echo "selected";                                                           
                         }                

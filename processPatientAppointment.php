@@ -14,6 +14,7 @@ $initial_complaint = $_POST['initial_complaint'] != '' ? $_POST['initial_complai
 $appointment_department = $_POST['appointment_department'] != '' ? $_POST['appointment_department'] : $errorCount++;
 
 
+
 // Add sessions
 $_SESSION['appointment_date'] = $appointment_date;
 $_SESSION['appointment_time'] = $appointment_time;
@@ -46,12 +47,13 @@ if ($errorCount > 0) {
     'appointment_nature' => $appointment_nature,
     'initial_complaint' => $initial_complaint,
     'appointment_department' => $appointment_department,
+    'payment_status' => 'Not Paid'
   ];
 
 
 
   add_appointment($userObject);
 
-  $_SESSION["message"] = "Your appointment has been successfully booked";
-  redirect_to("patient.php");
+  $_SESSION["message"] = "Your appointment has been successfully booked. You can make payment now";
+  redirect_to("pay_bills.php");
 }

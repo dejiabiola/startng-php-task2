@@ -1,5 +1,6 @@
 <?php include_once('lib/header.php'); 
 require_once('functions/alert.php');
+require_once('functions/redirect.php');
 
 if(!isset($_SESSION['loggedIn'])){
     // redirect to dashboard
@@ -30,6 +31,7 @@ if(!isset($_SESSION['loggedIn'])){
     <p>What do you want to do?</p>
     <a class="p-2" href="pay_bills.php">Pay Bills</a>
     <a class="p-2" href="book_appointment.php">Book Appointment</a>
+   
   </div>
 </div>
 
