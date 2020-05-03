@@ -32,6 +32,7 @@ if(!isset($_SESSION['loggedIn'])){
     <a class="p-2" href="view_medical_staff.php">View Medical Staff</a>
     <a class="p-2" href="view_patients.php">View Patients</a>
     <a class="p-2" href="register_others.php">Register Someone</a>
+    <a class="p-2" href="paid_patients.php">View Ledger Page</a>
   </div>
 </div>
   

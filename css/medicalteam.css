@@ -26,7 +26,7 @@
 .medical_main th,
 .medical_main td {
   padding: 15px;
-  text-align: left;
+  text-align: center;
 }
 table.medical_table tr:nth-child(even) {
   background-color: #eee;

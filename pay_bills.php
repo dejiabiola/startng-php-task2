@@ -78,49 +78,45 @@ if(!isset($_SESSION['loggedIn'])){
 
 
 <script>
-  
-              
-    const API_publicKey = "FLWPUBK_TEST-220bf416ebaa65762642ad7fe776ad9a-X";
-    const email = document.getElementById('patient_email').value;
+  const API_publicKey = "FLWPUBK_TEST-220bf416ebaa65762642ad7fe776ad9a-X";
+  const email = document.getElementById('patient_email').value;
 
-    const buttons = document.getElementsByClassName('pay_button')
-    for (let button of buttons) {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        const appointmentId = e.target.name;
-        payWithRave(appointmentId);
-      })
-    }
+  const buttons = document.getElementsByClassName('pay_button')
+  for (let button of buttons) {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const appointmentId = e.target.name;
+      payWithRave(appointmentId);
+    })
+  }
 
-    function payWithRave(appointmentId) {
-
-        var x = getpaidSetup({
-            PBFPubKey: API_publicKey,
-            customer_email: email,
-            amount: 2000,
-            currency: "NGN",
-            txref: "rave-123456",
-            meta: [{
-                metaname: "flightID",
-                metavalue: "AP1234"
-            }],
-            onclose: function() {},
-            callback: function(response) {
-                var txref = response.data.txRef; // collect txRef returned and pass to a                    server page to complete status check.
-                console.log("This is the response returned after a charge", response);
-                if (
-                    response.respcode == "00" ||
-                    response.data.data.status == "successful"
-                ) {
-                    // redirect to a success page
-                    window.location = "http://192.168.64.2/snh-hospital/processPayment.php?id=" + appointmentId + "&email=" + email;
-                } else {
-                    // redirect to a failure page.
-                    window.location = "http://192.168.64.2/snh-hospital/processPaymentFailure.php"
-                }
-
-                x.close(); // use this to close the modal immediately after payment.
-            }
-        });
-    }
+  function payWithRave(appointmentId) {
+    var x = getpaidSetup({
+      PBFPubKey: API_publicKey,
+      customer_email: email,
+      amount: 2000,
+      currency: "NGN",
+      txref: "rave-123456",
+      meta: [{
+        metaname: "flightID",
+        metavalue: "AP1234"
+      }],
+      onclose: function() {},
+      callback: function(response) {
+        var txref = response.data.txRef; // collect txRef returned and pass to a                    server page to complete status check.
+        console.log("This is the response returned after a charge", response);
+        if (
+          response.respcode == "00" ||
+          response.data.data.status == "successful"
+        ) {
+          // redirect to a success page
+          window.location = "http://192.168.64.2/snh-hospital/processPayment.php?id=" + appointmentId + "&email=" + email;
+        } else {
+          // redirect to a failure page.
+          window.location = "http://192.168.64.2/snh-hospital/processPaymentFailure.php"
+        }
+        x.close(); // use this to close the modal immediately after payment.
+      }
+    });
+  }
 </script>

@@ -17,6 +17,17 @@
 
   if ($appointmentObject) {
     $appointmentObject->payment_status = "Paid";
+    $appointmentObject->paid_for = "Consultation fee";
+    $appointmentObject->amount = "NGN 2000";
+    
+    date_default_timezone_set("Africa/Lagos");
+    $payment_date = date("Y/m/d");
+    $payment_time = date("h:i:sa");
+
+    $appointmentObject->payment_date = $payment_date;
+    $appointmentObject->payment_time = $payment_time; 
+
+
     delete_appointment($appointmentId);
 
     update_appointment($appointmentObject);
