@@ -16,27 +16,6 @@
   $super_admin_check = $_POST['super_admin'] != '' ? $_POST['super_admin'] : '';
   $super_admin_email = $_POST['admin_email'] != '' ? $_POST['admin_email'] : '';
  
-
-
-  // Check if access came from the superadmin page
-  if ($super_admin_check) {
-    $_SESSION['admin'] = true;
-  }
-
-
-  // Assign sessions to new user information
-  $_SESSION['first_name'] = $first_name;
-  $_SESSION['last_name'] = $last_name;
-  $_SESSION['email'] = $email;
-  $_SESSION['gender'] = $gender;
-  $_SESSION['designation'] = $designation;
-  $_SESSION['department'] = $department;
-
-  
-
-
-
-
   // Check if first and last name have numbers and if their length is greater than 2
   if (nameCheck($first_name) == false || nameCheck($last_name) == false) {
     $_SESSION['error'] = "Your first name and last name must not contain any digits";
@@ -66,6 +45,19 @@
     die();
   }
 
+  // Check if access came from the superadmin page
+  if ($super_admin_check) {
+    $_SESSION['admin'] = true;
+  }
+
+
+  // Assign sessions to new user information
+  $_SESSION['first_name'] = $first_name;
+  $_SESSION['last_name'] = $last_name;
+  $_SESSION['email'] = $email;
+  $_SESSION['gender'] = $gender;
+  $_SESSION['designation'] = $designation;
+  $_SESSION['department'] = $department;
 
   if ($errorCount > 0) {
     // Redirect user back to from and display error
