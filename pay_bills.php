@@ -107,7 +107,7 @@ if(!isset($_SESSION['loggedIn'])){
         console.log("This is the response returned after a charge", response);
         if (
           response.respcode == "00" ||
-          response.data.data.status == "successful"
+          response.tx.chargeResponseCode == "successful"
         ) {
           // redirect to a success page
           window.location = "http://192.168.64.2/snh-hospital/processPayment.php?id=" + appointmentId + "&email=" + email;
