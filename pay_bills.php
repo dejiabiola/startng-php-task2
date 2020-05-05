@@ -45,8 +45,8 @@ if(!isset($_SESSION['loggedIn'])){
             <td><?php echo $appointments[$i]->appointment_department ?></td>
             <td><?php echo $appointments[$i]->initial_complaint ?></td>
             <td><?php echo $appointments[$i]->payment_status ?></td>
-            <?php if ($appointments[$i]->payment_status != 'Paid') { ?>
-                <td>
+            <td>
+              <?php if ($appointments[$i]->payment_status != 'Paid') { ?>
                 <form style="display:flex;justify-content:center;align-items:center;">
                   <input type="hidden" id="patient_email"
                   <?php              
@@ -62,8 +62,8 @@ if(!isset($_SESSION['loggedIn'])){
                     Pay Now
                   </button>
                 </form>
-              </td>
               <?php } ?>
+            </td>
           </tr>
         <?php } ?>
       </tbody>
